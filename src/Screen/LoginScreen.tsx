@@ -6,12 +6,15 @@ import LottieView from "lottie-react-native";
 import { Feather } from "@expo/vector-icons";
 import Animated, { FadeInDown, FadeInRight } from "react-native-reanimated";
 import { useState } from 'react';
+import { StackScreenProps } from "@react-navigation/stack";
 
-
+//poder pasarle el navigation al Screen
+interface Props extends StackScreenProps<any,any> {}
 
 const { width, height } = Dimensions.get("window");
-const LoginScreen = () => {
-const [isLoading, setIsLoading]=useState(false) 
+
+const LoginScreen = ({navigation}:Props) => {
+
  
   //onchange me va a permitir cambiar los datos del formulario
   const { email, password, onChange } = useForm({
@@ -151,6 +154,10 @@ const [isLoading, setIsLoading]=useState(false)
           >
             <Text style={{ fontSize: 16, color: "#FFF" }}>Login</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={()=> navigation.navigate('RegistreScreen')}
+          >
           <Text
             style={{
               fontSize: 14,
@@ -161,6 +168,7 @@ const [isLoading, setIsLoading]=useState(false)
           >
             Forgot password?
           </Text>
+          </TouchableOpacity>
 
           <TouchableOpacity
             style={{
