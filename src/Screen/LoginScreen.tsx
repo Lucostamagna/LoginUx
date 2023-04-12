@@ -1,22 +1,29 @@
 import React from "react";
-import { View, Text, Dimensions, Image, KeyboardAvoidingView, Platform, Keyboard } from "react-native";
+import {
+  View,
+  Text,
+  Dimensions,
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+  Keyboard,
+} from "react-native";
+import { useState } from "react";
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 import { useForm } from "../Hooks/useForm";
 import LottieView from "lottie-react-native";
 import { Feather } from "@expo/vector-icons";
-import Animated, { FadeInDown, FadeInRight } from "react-native-reanimated";
-import { useState } from 'react';
 import { StackScreenProps } from "@react-navigation/stack";
 
-//poder pasarle el navigation al Screen
-interface Props extends StackScreenProps<any,any> {}
+
 
 const { width, height } = Dimensions.get("window");
+//poder pasarle el navigation al Screen
+interface Props extends StackScreenProps<any, any> {}
 
-const LoginScreen = ({navigation}:Props) => {
+const LoginScreen = ({ navigation }: Props) => {
+  const [isLoading, setIsLoading]=useState(false);
 
- 
-  //onchange me va a permitir cambiar los datos del formulario
   const { email, password, onChange } = useForm({
     email: "",
     password: "",
@@ -28,14 +35,15 @@ const LoginScreen = ({navigation}:Props) => {
   };
 
   return (
-   
     <View style={{ flex: 1, backgroundColor: "#FFF", padding: 20 }}>
-      
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-      >
-        {/* <View style={{ flex: 1 }}>
+
+{isLoading &&
+      // <KeyboardAvoidingView
+      //   style={{ flex: 1 }}
+      //   behavior={Platform.OS === "ios" ? "padding" : "height"}
+      // >
+        
+        <View style={{ flex: 1 }}>
           <LottieView
             autoPlay={true}
             style={{
@@ -58,10 +66,12 @@ const LoginScreen = ({navigation}:Props) => {
           >
             Loading
           </Text>
-        </View> */}
-
+        </View>
+}
+{!isLoading &&
         <>
-          {/* <Animated.View entering={FadeInDown.delay(300).duration(300)}> */}
+
+          
           <Image
             source={require("../Screen/save.png")}
             style={{
@@ -88,7 +98,7 @@ const LoginScreen = ({navigation}:Props) => {
             Make your day great!
           </Text>
 
-          {/* <Animated.View entering={FadeInDown.delay(600).duration(300)} style={{ flex: 1 }}> */}
+          
           <Text style={{ fontSize: 16, color: "#323646", marginTop: 20 }}>
             Email
           </Text>
@@ -101,8 +111,8 @@ const LoginScreen = ({navigation}:Props) => {
             }}
           >
             <TextInput
-              placeholder="ingrese su mail"
-              placeholderTextColor="#7F8C8D "
+              placeholder='ingrese su mail'
+              placeholderTextColor='#7F8C8D'
               keyboardType="email-address"
               selectionColor="black"
               onChangeText={(value) => onChange(value, "email")}
@@ -150,24 +160,25 @@ const LoginScreen = ({navigation}:Props) => {
               height: 50,
               marginTop: 20,
             }}
-            onPress={onLogin}
+            // onPress={onLogin}
+            onPress={() => setIsLoading(true)}
           >
             <Text style={{ fontSize: 16, color: "#FFF" }}>Login</Text>
           </TouchableOpacity>
           <TouchableOpacity
-          activeOpacity={0.8}
-          onPress={()=> navigation.navigate('RegistreScreen')}
+            activeOpacity={0.8}
+            onPress={() => navigation.navigate("RegistreScreen")}
           >
-          <Text
-            style={{
-              fontSize: 14,
-              color: "#50e3c2",
-              padding: 10,
-              textAlign: "center",
-            }}
-          >
-            Forgot password?
-          </Text>
+            <Text
+              style={{
+                fontSize: 14,
+                color: "#50e3c2",
+                padding: 10,
+                textAlign: "center",
+              }}
+            >
+              Forgot password?
+            </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -193,8 +204,11 @@ const LoginScreen = ({navigation}:Props) => {
           </TouchableOpacity>
           {/* </Animated.View> */}
         </>
-      </KeyboardAvoidingView>
+
+      // </KeyboardAvoidingView>
+            } 
     </View>
+            
   );
 };
 
