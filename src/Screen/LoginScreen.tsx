@@ -22,8 +22,7 @@ const { width, height } = Dimensions.get("window");
 interface Props extends StackScreenProps<any, any> {}
 
 const LoginScreen = ({ navigation }: Props) => {
-  const [isLoading, setIsLoading]=useState(false);
-
+ 
   const { email, password, onChange } = useForm({
     email: "",
     password: "",
@@ -37,13 +36,13 @@ const LoginScreen = ({ navigation }: Props) => {
   return (
     <View style={{ flex: 1, backgroundColor: "#FFF", padding: 20 }}>
 
-{isLoading &&
-      // <KeyboardAvoidingView
-      //   style={{ flex: 1 }}
-      //   behavior={Platform.OS === "ios" ? "padding" : "height"}
-      // >
+
+       <KeyboardAvoidingView
+        style={{ flex: 1 }}
+       behavior={Platform.OS === "ios" ? "padding" : "height"}
+       >
         
-        <View style={{ flex: 1 }}>
+        {/* <View style={{ flex: 1 }}>
           <LottieView
             autoPlay={true}
             style={{
@@ -66,9 +65,9 @@ const LoginScreen = ({ navigation }: Props) => {
           >
             Loading
           </Text>
-        </View>
-}
-{!isLoading &&
+        </View> */}
+
+
         <>
 
           
@@ -160,8 +159,8 @@ const LoginScreen = ({ navigation }: Props) => {
               height: 50,
               marginTop: 20,
             }}
-            // onPress={onLogin}
-            onPress={() => setIsLoading(true)}
+             onPress={onLogin}
+            
           >
             <Text style={{ fontSize: 16, color: "#FFF" }}>Login</Text>
           </TouchableOpacity>
@@ -205,8 +204,8 @@ const LoginScreen = ({ navigation }: Props) => {
           {/* </Animated.View> */}
         </>
 
-      // </KeyboardAvoidingView>
-            } 
+       </KeyboardAvoidingView>
+             
     </View>
             
   );
