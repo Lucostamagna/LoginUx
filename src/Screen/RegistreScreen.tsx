@@ -10,8 +10,6 @@ import {
 } from "react-native";
 import { useState } from "react";
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
-import { useForm } from "../Hooks/useForm";
-import LottieView from "lottie-react-native";
 import { Feather } from "@expo/vector-icons";
 import { StackScreenProps } from "@react-navigation/stack";
 
@@ -24,46 +22,16 @@ const RegistreScreen = ({ navigation }: Props) => {
 
   return (
     <View style={{ flex: 1, backgroundColor: "#FFF", padding: 20 }}>
-
-
-     <KeyboardAvoidingView
-         style={{ flex: 1 }}
-         behavior={Platform.OS === "ios" ? "padding" : "height"}
-       >
-        
-        <View style={{ flex: 1 }}>
-          <LottieView
-            autoPlay={true}
-            style={{
-              width: width,
-              backgroundColor: "#FFF",
-              alignSelf: "center",
-            }}
-            source={require("../../assets/99274-loading.json")}
-          />
-
-          <Text
-            style={{
-              fontFamily: "",
-              fontSize: 30,
-              color: "black",
-              alignSelf: "center",
-              position: "absolute",
-              top: 225,
-            }}
-          >
-            Loading
-          </Text>
-        </View>
-
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
         <>
-
-          
           <Image
             source={require("../Screen/save.png")}
             style={{
-              width: 175,
-              height: 175,
+              width: 135,
+              height: 135,
               resizeMode: "contain",
               alignSelf: "center",
               marginTop: 20,
@@ -72,20 +40,37 @@ const RegistreScreen = ({ navigation }: Props) => {
 
           <Text
             style={{
-              fontSize: 30,
+              fontSize: 27,
               color: "#323646",
               alignSelf: "center",
               marginTop: 20,
             }}
           >
-            Welcome to Todify!
+            Register
           </Text>
 
-          <Text style={{ fontSize: 16, color: "#323646", alignSelf: "center" }}>
-            Make your day great!
+          <Text style={{ fontSize: 16, color: "#323646", marginTop: 20 }}>
+            Name
           </Text>
+          <View
+            style={{
+              backgroundColor: "#f6f6f6",
+              height: 50,
+              borderRadius: 10,
+              paddingHorizontal: 10,
+            }}
+          >
+            <TextInput
+              placeholder="enter your name"
+              placeholderTextColor="#7F8C8D"
+              selectionColor="black"
+              style={{
+                color: "#323646",
+                padding: 10,
+              }}
+            />
+          </View>
 
-          
           <Text style={{ fontSize: 16, color: "#323646", marginTop: 20 }}>
             Email
           </Text>
@@ -98,42 +83,40 @@ const RegistreScreen = ({ navigation }: Props) => {
             }}
           >
             <TextInput
-              placeholder='ingrese su mail'
-              placeholderTextColor='#7F8C8D'
-              keyboardType="email-address"
+              placeholder="enter your email"
+              placeholderTextColor="#7F8C8D"
               selectionColor="black"
-              
               style={{
                 color: "#323646",
                 padding: 10,
               }}
             />
           </View>
-
           <Text style={{ fontSize: 16, color: "#323646", marginTop: 20 }}>
-            Password
+            Email
           </Text>
           <View
             style={{
               backgroundColor: "#f6f6f6",
               height: 50,
               borderRadius: 10,
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
               paddingHorizontal: 10,
             }}
           >
             <TextInput
-              style={{ color: "#323646", padding: 10 }}
-              secureTextEntry
+              placeholder="***********"
+              placeholderTextColor="#7F8C8D"
+              selectionColor="black"
+              style={{
+                color: "#323646",
+                padding: 10,
+              }}
               
-              placeholder="***"
-              placeholderTextColor="#7F8C8D "
             />
-            <Feather name="eye" size={24} color="#323646" />
+            
+            
           </View>
-
+          
           <TouchableOpacity
             style={{
               backgroundColor: "#50e3c2",
@@ -143,54 +126,12 @@ const RegistreScreen = ({ navigation }: Props) => {
               height: 50,
               marginTop: 20,
             }}
-            
           >
-            <Text style={{ fontSize: 16, color: "#FFF" }}>Login</Text>
+            <Text style={{ fontSize: 16, color: "#FFF" }}>Create Account</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={0.8}
-            onPress={() => navigation.navigate("RegistreScreen")}
-          >
-            <Text
-              style={{
-                fontSize: 14,
-                color: "#50e3c2",
-                padding: 10,
-                textAlign: "center",
-              }}
-            >
-              Forgot password?
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              alignSelf: "center",
-              alignItems: "flex-end",
-            }}
-          >
-            <Text style={{ fontSize: 14, color: "#323646" }}>
-              Don't have an account?{" "}
-            </Text>
-            <Text
-              style={{
-                // fontFamily: "Poppins-Medium",
-                fontSize: 14,
-                color: "#50e3c2",
-              }}
-            >
-              Register!
-            </Text>
-          </TouchableOpacity>
-          {/* </Animated.View> */}
         </>
-
-       </KeyboardAvoidingView>
-             
+      </KeyboardAvoidingView>
     </View>
-            
   );
 };
 

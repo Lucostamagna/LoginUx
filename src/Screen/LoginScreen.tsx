@@ -22,7 +22,6 @@ const { width, height } = Dimensions.get("window");
 interface Props extends StackScreenProps<any, any> {}
 
 const LoginScreen = ({ navigation }: Props) => {
- 
   const { email, password, onChange } = useForm({
     email: "",
     password: "",
@@ -35,13 +34,10 @@ const LoginScreen = ({ navigation }: Props) => {
 
   return (
     <View style={{ flex: 1, backgroundColor: "#FFF", padding: 20 }}>
-
-
-       <KeyboardAvoidingView
+      <KeyboardAvoidingView
         style={{ flex: 1 }}
-       behavior={Platform.OS === "ios" ? "padding" : "height"}
-       >
-        
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
         {/* <View style={{ flex: 1 }}>
           <LottieView
             autoPlay={true}
@@ -67,10 +63,7 @@ const LoginScreen = ({ navigation }: Props) => {
           </Text>
         </View> */}
 
-
         <>
-
-          
           <Image
             source={require("../Screen/save.png")}
             style={{
@@ -97,7 +90,6 @@ const LoginScreen = ({ navigation }: Props) => {
             Make your day great!
           </Text>
 
-          
           <Text style={{ fontSize: 16, color: "#323646", marginTop: 20 }}>
             Email
           </Text>
@@ -110,8 +102,8 @@ const LoginScreen = ({ navigation }: Props) => {
             }}
           >
             <TextInput
-              placeholder='ingrese su mail'
-              placeholderTextColor='#7F8C8D'
+              placeholder="ingrese su mail"
+              placeholderTextColor="#7F8C8D"
               keyboardType="email-address"
               selectionColor="black"
               onChangeText={(value) => onChange(value, "email")}
@@ -159,36 +151,20 @@ const LoginScreen = ({ navigation }: Props) => {
               height: 50,
               marginTop: 20,
             }}
-             onPress={onLogin}
-            
+            onPress={onLogin}
           >
             <Text style={{ fontSize: 16, color: "#FFF" }}>Login</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            activeOpacity={0.8}
-            onPress={() => navigation.navigate("RegistreScreen")}
-          >
-            <Text
-              style={{
-                fontSize: 14,
-                color: "#50e3c2",
-                padding: 10,
-                textAlign: "center",
-              }}
-            >
-              Forgot password?
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
             style={{
-              flex: 1,
               flexDirection: "row",
               alignSelf: "center",
               alignItems: "flex-end",
             }}
+            activeOpacity={0.8}
+            onPress={() => navigation.navigate("RegistreScreen")}
           >
-            <Text style={{ fontSize: 14, color: "#323646" }}>
+            <Text style={{ fontSize: 14, color: "black" }}>
               Don't have an account?{" "}
             </Text>
             <Text
@@ -201,13 +177,9 @@ const LoginScreen = ({ navigation }: Props) => {
               Register!
             </Text>
           </TouchableOpacity>
-          {/* </Animated.View> */}
         </>
-
-       </KeyboardAvoidingView>
-             
+      </KeyboardAvoidingView>
     </View>
-            
   );
 };
 
