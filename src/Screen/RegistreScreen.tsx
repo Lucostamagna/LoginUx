@@ -12,12 +12,24 @@ import { useState } from "react";
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 import { Feather } from "@expo/vector-icons";
 import { StackScreenProps } from "@react-navigation/stack";
+import { useForm } from "../Hooks/useForm";
 
 const { width, height } = Dimensions.get("window");
 
 interface Props extends StackScreenProps<any, any> {}
 
 const RegistreScreen = ({ navigation }: Props) => {
+  const { email, password,name, onChange } = useForm
+  ({
+    name:"",
+    email: "",
+    password: "",
+  });
+
+  const onRegister = () => {
+    console.log({ email, password, name });
+    Keyboard.dismiss();
+  };
   
 
   return (
@@ -62,6 +74,10 @@ const RegistreScreen = ({ navigation }: Props) => {
           >
             <TextInput
               placeholder="enter your name"
+              autoCapitalize="words"
+              onChangeText={(value) => onChange(value, "name")}
+              value={name}
+              onSubmitEditing={onRegister}
               placeholderTextColor="#7F8C8D"
               selectionColor="black"
               style={{
@@ -86,6 +102,10 @@ const RegistreScreen = ({ navigation }: Props) => {
               placeholder="enter your email"
               placeholderTextColor="#7F8C8D"
               selectionColor="black"
+              onChangeText={(value) => onChange(value, "email")}
+              value={email}
+              onSubmitEditing={onRegister}
+              autoCorrect={false}
               style={{
                 color: "#323646",
                 padding: 10,
@@ -93,7 +113,7 @@ const RegistreScreen = ({ navigation }: Props) => {
             />
           </View>
           <Text style={{ fontSize: 16, color: "#323646", marginTop: 20 }}>
-            Email
+            Password
           </Text>
           <View
             style={{
@@ -107,6 +127,9 @@ const RegistreScreen = ({ navigation }: Props) => {
               placeholder="***********"
               placeholderTextColor="#7F8C8D"
               selectionColor="black"
+              onChangeText={(value) => onChange(value, "password")}
+              value={password}
+              onSubmitEditing={onRegister}
               style={{
                 color: "#323646",
                 padding: 10,
@@ -125,8 +148,11 @@ const RegistreScreen = ({ navigation }: Props) => {
               alignItems: "center",
               height: 50,
               marginTop: 20,
+              
             }}
+            onPress={onRegister}
           >
+            
             <Text style={{ fontSize: 16, color: "#FFF" }}>Create Account</Text>
           </TouchableOpacity>
         </>
