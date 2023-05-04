@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Navigator } from './src/Navigator/Navigator';
 import { AuthProvider } from './src/Context/AuthContext';
 
+
 // de esta manera conecto mi authprovider con mi app global
 const AppState=({children}: any)=>{
   return(
@@ -17,6 +18,7 @@ const AppState=({children}: any)=>{
 
 export default function App() {
   return (
+    
     <NavigationContainer>
       <AppState>
       <Navigator/>

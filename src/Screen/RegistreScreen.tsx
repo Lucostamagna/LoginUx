@@ -150,7 +150,7 @@ const RegistreScreen = ({ navigation }: Props) => {
               marginTop: 20,
               
             }}
-            onPress={onRegister}
+            onPress={() => navigation.navigate("Loginprueba")}
           >
             
             <Text style={{ fontSize: 16, color: "#FFF" }}>Create Account</Text>

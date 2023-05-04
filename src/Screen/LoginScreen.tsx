@@ -38,8 +38,8 @@ const LoginScreen = ({ navigation }: Props) => {
         style={{ flex: 1 }}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-        {/* <View style={{ flex: 1 }}>
-          <LottieView
+        {/* <View style={{ flex: 1 }}> */}
+          {/* <LottieView
             autoPlay={true}
             style={{
               width: width,
@@ -47,9 +47,9 @@ const LoginScreen = ({ navigation }: Props) => {
               alignSelf: "center",
             }}
             source={require("../../assets/99274-loading.json")}
-          />
+          /> */}
 
-          <Text
+          {/* <Text
             style={{
               fontFamily: "",
               fontSize: 30,
