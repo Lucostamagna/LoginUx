@@ -8,12 +8,13 @@ import {
   Platform,
   Keyboard,
 } from "react-native";
-import { useState } from "react";
+import { useContext } from "react";
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 import { useForm } from "../Hooks/useForm";
 import LottieView from "lottie-react-native";
 import { Feather } from "@expo/vector-icons";
 import { StackScreenProps } from "@react-navigation/stack";
+import { AuthContext } from "../Context/AuthContext";
 
 
 
@@ -22,6 +23,8 @@ const { width, height } = Dimensions.get("window");
 interface Props extends StackScreenProps<any, any> {}
 
 const LoginScreen = ({ navigation }: Props) => {
+// const {signIn}= useContext(AuthContext);
+  
   const { email, password, onChange } = useForm({
     email: "",
     password: "",
