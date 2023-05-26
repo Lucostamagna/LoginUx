@@ -83,7 +83,7 @@ const LoginScreen = ({ navigation }: Props) => {
               fontSize: 30,
               color: "#323646",
               alignSelf: "center",
-              marginTop: 20,
+              marginTop: 25,
             }}
           >
             Welcome to Todify!
