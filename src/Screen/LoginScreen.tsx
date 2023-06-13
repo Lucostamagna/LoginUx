@@ -23,8 +23,8 @@ const { width, height } = Dimensions.get("window");
 interface Props extends StackScreenProps<any, any> {}
 
 const LoginScreen = ({ navigation }: Props) => {
-// const {signIn}= useContext(AuthContext);
-  
+  const { signIn } = useContext(AuthContext);
+
   const { email, password, onChange } = useForm({
     email: "",
     password: "",
@@ -32,7 +32,8 @@ const LoginScreen = ({ navigation }: Props) => {
 
   const onLogin = () => {
     console.log({ email, password });
-    Keyboard.dismiss();
+    Keyboard.dismiss(); //oculta el teclado cuando hago login
+    signIn();
   };
 
   return (
@@ -42,7 +43,7 @@ const LoginScreen = ({ navigation }: Props) => {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         {/* <View style={{ flex: 1 }}> */}
-          {/* <LottieView
+        {/* <LottieView
             autoPlay={true}
             style={{
               width: width,
@@ -52,7 +53,7 @@ const LoginScreen = ({ navigation }: Props) => {
             source={require("../../assets/99274-loading.json")}
           /> */}
 
-          {/* <Text
+        {/* <Text
             style={{
               fontFamily: "",
               fontSize: 30,
@@ -111,7 +112,6 @@ const LoginScreen = ({ navigation }: Props) => {
               selectionColor="black"
               onChangeText={(value) => onChange(value, "email")}
               value={email}
-              onSubmitEditing={onLogin}
               style={{
                 color: "#323646",
                 padding: 10,
@@ -134,13 +134,11 @@ const LoginScreen = ({ navigation }: Props) => {
             }}
           >
             <TextInput
-              style={{ color: "#323646", padding: 10 }}
+              style={{ color: "#323646", padding: 10, height: 90 }}
               secureTextEntry
               onChangeText={(value) => onChange(value, "password")}
               value={password}
-              onSubmitEditing={onLogin}
-              placeholder="***"
-              placeholderTextColor="#7F8C8D "
+              placeholder="********"
             />
             <Feather name="eye" size={24} color="#323646" />
           </View>

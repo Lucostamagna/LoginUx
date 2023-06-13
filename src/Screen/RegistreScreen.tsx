@@ -77,8 +77,8 @@ const RegistreScreen = ({ navigation }: Props) => {
               autoCapitalize="words"
               onChangeText={(value) => onChange(value, "name")}
               value={name}
-              onSubmitEditing={onRegister}
-              placeholderTextColor="#7F8C8D"
+            
+              
               selectionColor="black"
               style={{
                 color: "#323646",
@@ -100,11 +100,11 @@ const RegistreScreen = ({ navigation }: Props) => {
           >
             <TextInput
               placeholder="enter your email"
-              placeholderTextColor="#7F8C8D"
+              
               selectionColor="black"
               onChangeText={(value) => onChange(value, "email")}
               value={email}
-              onSubmitEditing={onRegister}
+              // onSubmitEditing={onRegister}
               autoCorrect={false}
               style={{
                 color: "#323646",
@@ -125,11 +125,11 @@ const RegistreScreen = ({ navigation }: Props) => {
           >
             <TextInput
               placeholder="***********"
-              placeholderTextColor="#7F8C8D"
+              
               selectionColor="black"
               onChangeText={(value) => onChange(value, "password")}
               value={password}
-              onSubmitEditing={onRegister}
+              // onSubmitEditing={onRegister}
               style={{
                 color: "#323646",
                 padding: 10,
