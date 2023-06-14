@@ -11,10 +11,8 @@ type AuthAction =
   | { type: "signUp"; payload: { token: string; user: Usuario } }
   | { type: "addError"; payload: string }
   | { type: "removeError" }
-  | { type: "notAuthenticated" } //si  el token falla, esta accion limpia mi estado y lo deja como el inicial
-  | { type: "logout" }; //cerrar sesion
-
-//CREO MI REDUCER
+  | { type: "notAuthenticated" }
+  | { type: "logout" };
 
 export const authReducer = (
   state: AuthState,
@@ -24,8 +22,8 @@ export const authReducer = (
     case "addError":
       return {
         ...state,
-        user: null, //si hay un error el usuario es null
-        status: "not-authenticated", //si hay un erro no va a estar autenticado
+        user: null,
+        status: "not-authenticated",
         token: null,
         errorMessage: action.payload,
       };
@@ -44,7 +42,7 @@ export const authReducer = (
         user: action.payload.user,
       };
     }
-    case "logout": //estos dos casos hacen lo mismo
+    case "logout":
     case "notAuthenticated": {
       return {
         ...state,

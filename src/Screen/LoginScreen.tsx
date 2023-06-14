@@ -33,7 +33,7 @@ const LoginScreen = ({ navigation }: Props) => {
   const onLogin = () => {
     console.log({ email, password });
     Keyboard.dismiss(); //oculta el teclado cuando hago login
-    signIn();
+    signIn({correo:email, password});
   };
 
   return (
@@ -163,7 +163,7 @@ const LoginScreen = ({ navigation }: Props) => {
               alignItems: "flex-end",
             }}
             activeOpacity={0.8}
-            onPress={() => navigation.navigate("RegistreScreen")}
+            onPress={() => navigation.replace("RegistreScreen")}
           >
             <Text style={{ fontSize: 14, color: "black" }}>
               Don't have an account?{" "}
