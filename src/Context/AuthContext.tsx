@@ -31,13 +31,19 @@ export const AuthProvider = ({ children }: any) => {
 
   const singIn = async ({ correo, password }: LoginData) => {
     try {
-      const resp = await userDB.post<LoginResponse>("/auth/login", {
+      const {data} = await userDB.post<LoginResponse>("/auth/login", {
         correo,
         password,
       });
-      console.log(resp.data);
-    } catch (error) {
-      console.log({ error});
+     dispatch({
+      type:'signUp',
+      payload :{
+        token: data.token,
+        user:data.usuario
+      }
+     })
+    } catch(error) {
+      
     }
   };
 
