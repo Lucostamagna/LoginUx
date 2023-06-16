@@ -26,6 +26,7 @@ const aunthInitialState: AuthState = {
 export const AuthContext = createContext({} as AuthContextProps); 
 
 export const AuthProvider = ({ children }: any) => {
+
   const [state, dispatch] = useReducer(authReducer, aunthInitialState);
 
   const singIn = async ({ correo, password }: LoginData) => {
@@ -36,7 +37,7 @@ export const AuthProvider = ({ children }: any) => {
       });
       console.log(resp.data);
     } catch (error) {
-      console.log({ error });
+      console.log({ error});
     }
   };
 

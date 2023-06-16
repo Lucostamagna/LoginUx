@@ -8,13 +8,14 @@ import {
   Platform,
   Keyboard,
 } from "react-native";
-import { useContext } from "react";
+
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 import { useForm } from "../Hooks/useForm";
 import LottieView from "lottie-react-native";
 import { Feather } from "@expo/vector-icons";
 import { StackScreenProps } from "@react-navigation/stack";
 import { AuthContext } from "../Context/AuthContext";
+import { useContext } from 'react';
 
 
 
@@ -23,7 +24,7 @@ const { width, height } = Dimensions.get("window");
 interface Props extends StackScreenProps<any, any> {}
 
 const LoginScreen = ({ navigation }: Props) => {
-  const { signIn } = useContext(AuthContext);
+ const{singIn} =useContext(AuthContext)
 
   const { email, password, onChange } = useForm({
     email: "",
@@ -33,7 +34,7 @@ const LoginScreen = ({ navigation }: Props) => {
   const onLogin = () => {
     console.log({ email, password });
     Keyboard.dismiss(); //oculta el teclado cuando hago login
-    signIn({correo:email, password});
+    singIn({correo:email, password});
   };
 
   return (
