@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   Keyboard,
+  Alert,
 } from "react-native";
 
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
@@ -24,12 +25,27 @@ const { width, height } = Dimensions.get("window");
 interface Props extends StackScreenProps<any, any> {}
 
 const LoginScreen = ({ navigation }: Props) => {
- const{singIn} =useContext(AuthContext)
+ const{singIn, errorMessage, removeError} =useContext(AuthContext)
 
   const { email, password, onChange } = useForm({
     email: "",
     password: "",
   });
+
+
+useEffect(()=>{
+if(errorMessage.length === 0) return;
+Alert.alert('Datos incorrectos',
+ errorMessage,
+ [{
+  text:'Ok',
+  onPress: removeError
+}
+ ])
+},[errorMessage])
+
+
+
 
   const onLogin = () => {
     console.log({ email, password });

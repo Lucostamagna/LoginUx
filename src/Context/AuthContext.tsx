@@ -43,14 +43,22 @@ export const AuthProvider = ({ children }: any) => {
       }
      })
     } catch(error) {
-      
+      console.log({error})
+      dispatch({
+        type: "addError",
+        payload:'informacion incorrecta'
+      })
     }
   };
 
   const singUp = () => {};
   const singOut = () => {};
   const logOut = () => {};
-  const removeError = () => {};
+  const removeError = () => {
+    dispatch({
+      type:'removeError'
+    })
+  };
 
   return (
     <AuthContext.Provider
