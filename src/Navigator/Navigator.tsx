@@ -14,18 +14,22 @@ export const Navigator = () => {
 
 
   return (
-    <Stack.Navigator >
+    <Stack.Navigator screenOptions={
+     {
+      headerShown: false,
+     }
+    }>
 
 {
   (status !== "authenticated") 
   ? (
     <>
-    <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }}/>
+    <Stack.Screen name="LoginScreen" component={LoginScreen} />
     <Stack.Screen name="RegistreScreen" component={RegistreScreen} options={{ headerShown: false }}/>
     </>
   ) : 
   (
-    <Stack.Screen name="ProtectedScreen" component={ProtectedScreen} options={{ headerShown: false }}/>
+    <Stack.Screen name="ProtectedScreen" component={ProtectedScreen} />
   )
 }
 

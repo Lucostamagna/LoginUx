@@ -46,7 +46,7 @@ const RegistreScreen = ({ navigation }: Props) => {
               height: 135,
               resizeMode: "contain",
               alignSelf: "center",
-              marginTop: 20,
+              marginTop: 70,
             }}
           />
 

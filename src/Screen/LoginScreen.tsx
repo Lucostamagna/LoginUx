@@ -35,13 +35,10 @@ const LoginScreen = ({ navigation }: Props) => {
 
 useEffect(()=>{
 if(errorMessage.length === 0) return;
-Alert.alert('Datos incorrectos',
- errorMessage,
- [{
+Alert.alert('Datos incorrectos', errorMessage,[{
   text:'Ok',
   onPress: removeError
-}
- ])
+}])
 },[errorMessage])
 
 
@@ -92,7 +89,7 @@ Alert.alert('Datos incorrectos',
               height: 175,
               resizeMode: "contain",
               alignSelf: "center",
-              marginTop: 20,
+              marginTop: 70,
             }}
           />
 
