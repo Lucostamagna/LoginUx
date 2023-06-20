@@ -20,7 +20,7 @@ import { useContext } from 'react';
 
 
 
-const { width, height } = Dimensions.get("window");
+
 //poder pasarle el navigation al Screen
 interface Props extends StackScreenProps<any, any> {}
 

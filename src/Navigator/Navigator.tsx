@@ -4,6 +4,7 @@ import RegistreScreen from '../Screen/RegistreScreen';
 import ProtectedScreen from '../Screen/ProtectedScreen';
 import { AuthContext } from '../Context/AuthContext';
 import { useContext } from 'react';
+import LoadingScreen from '../Screen/LoadingScreen';
 
 
 const Stack = createStackNavigator();
@@ -12,7 +13,7 @@ export const Navigator = () => {
 
   const {status}=useContext(AuthContext)
 
-
+if(status ==='checking') return <LoadingScreen/>
   return (
     <Stack.Navigator screenOptions={
      {
