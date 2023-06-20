@@ -72,14 +72,18 @@ export const AuthProvider = ({ children }: any) => {
       console.log({ error });
       dispatch({
         type: "addError",
-        payload: "informacion incorrecta",
+        payload: "Check the information",
       });
     }
   };
 
   const singUp = () => {};
   const singOut = () => {};
-  const logOut = () => {};
+  const logOut = async() => {
+    await AsyncStorage.removeItem("token");
+dispatch({type:'logout'})
+
+  };
   const removeError = () => {
     dispatch({
       type: "removeError",

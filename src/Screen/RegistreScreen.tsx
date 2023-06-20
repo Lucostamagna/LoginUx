@@ -7,6 +7,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   Keyboard,
+  StyleSheet,
 } from "react-native";
 import { useState } from "react";
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
@@ -19,9 +20,8 @@ const { width, height } = Dimensions.get("window");
 interface Props extends StackScreenProps<any, any> {}
 
 const RegistreScreen = ({ navigation }: Props) => {
-  const { email, password,name, onChange } = useForm
-  ({
-    name:"",
+  const { email, password, name, onChange } = useForm({
+    name: "",
     email: "",
     password: "",
   });
@@ -30,55 +30,23 @@ const RegistreScreen = ({ navigation }: Props) => {
     console.log({ email, password, name });
     Keyboard.dismiss();
   };
-  
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#FFF", padding: 20 }}>
+    <View style={styles.container}>
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <>
-          <Image
-            source={require("../Screen/save.png")}
-            style={{
-              width: 135,
-              height: 135,
-              resizeMode: "contain",
-              alignSelf: "center",
-              marginTop: 70,
-            }}
-          />
-
-          <Text
-            style={{
-              fontSize: 27,
-              color: "#323646",
-              alignSelf: "center",
-              marginTop: 20,
-            }}
-          >
-            Register
-          </Text>
-
-          <Text style={{ fontSize: 16, color: "#323646", marginTop: 20 }}>
-            Name
-          </Text>
-          <View
-            style={{
-              backgroundColor: "#f6f6f6",
-              height: 50,
-              borderRadius: 10,
-              paddingHorizontal: 10,
-            }}
-          >
+          <Image source={require("../Screen/save.png")} style={styles.image} />
+          <Text style={styles.textRegistre}>Register</Text>
+          <Text style={styles.textName}>Name</Text>
+          <View style={styles.view}>
             <TextInput
               placeholder="enter your name"
               autoCapitalize="words"
               onChangeText={(value) => onChange(value, "name")}
               value={name}
-            
-              
               selectionColor="black"
               style={{
                 color: "#323646",
@@ -86,25 +54,13 @@ const RegistreScreen = ({ navigation }: Props) => {
               }}
             />
           </View>
-
-          <Text style={{ fontSize: 16, color: "#323646", marginTop: 20 }}>
-            Email
-          </Text>
-          <View
-            style={{
-              backgroundColor: "#f6f6f6",
-              height: 50,
-              borderRadius: 10,
-              paddingHorizontal: 10,
-            }}
-          >
+          <Text style={styles.textEmail}>Email</Text>
+          <View style={styles.view1}>
             <TextInput
               placeholder="enter your email"
-              
               selectionColor="black"
               onChangeText={(value) => onChange(value, "email")}
               value={email}
-              // onSubmitEditing={onRegister}
               autoCorrect={false}
               style={{
                 color: "#323646",
@@ -112,48 +68,24 @@ const RegistreScreen = ({ navigation }: Props) => {
               }}
             />
           </View>
-          <Text style={{ fontSize: 16, color: "#323646", marginTop: 20 }}>
-            Password
-          </Text>
-          <View
-            style={{
-              backgroundColor: "#f6f6f6",
-              height: 50,
-              borderRadius: 10,
-              paddingHorizontal: 10,
-            }}
-          >
+          <Text style={styles.textPassword}>Password</Text>
+          <View style={styles.view2}>
             <TextInput
               placeholder="***********"
-              
               selectionColor="black"
               onChangeText={(value) => onChange(value, "password")}
               value={password}
-              // onSubmitEditing={onRegister}
               style={{
                 color: "#323646",
                 padding: 10,
               }}
-              
             />
-            
-            
           </View>
-          
           <TouchableOpacity
-            style={{
-              backgroundColor: "#50e3c2",
-              borderRadius: 10,
-              justifyContent: "center",
-              alignItems: "center",
-              height: 50,
-              marginTop: 20,
-              
-            }}
+            style={styles.button}
             onPress={() => navigation.navigate("Loginprueba")}
           >
-            
-            <Text style={{ fontSize: 16, color: "#FFF" }}>Create Account</Text>
+            <Text style={styles.textbutton}>Create Account</Text>
           </TouchableOpacity>
         </>
       </KeyboardAvoidingView>
@@ -161,5 +93,57 @@ const RegistreScreen = ({ navigation }: Props) => {
   );
 };
 
-
-export default RegistreScreen
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: "#FFF", padding: 20 },
+  image: {
+    width: 135,
+    height: 135,
+    resizeMode: "contain",
+    alignSelf: "center",
+    marginTop: 70,
+  },
+  textRegistre: {
+    fontSize: 27,
+    color: "#323646",
+    alignSelf: "center",
+    marginTop: 20,
+  },
+  textName: { fontSize: 16, color: "#323646", marginTop: 20 },
+  view: {
+    backgroundColor: "#f6f6f6",
+    height: 50,
+    borderRadius: 10,
+    paddingHorizontal: 10,
+  },
+  textEmail: {
+    fontSize: 16,
+    color: "#323646",
+    marginTop: 20,
+  },
+  view1: {
+    backgroundColor: "#f6f6f6",
+    height: 50,
+    borderRadius: 10,
+    paddingHorizontal: 10,
+  },
+  textPassword: { fontSize: 16, color: "#323646", marginTop: 20 },
+  view2: {
+    backgroundColor: "#f6f6f6",
+    height: 50,
+    borderRadius: 10,
+    paddingHorizontal: 10,
+  },
+  button: {
+    backgroundColor: "#50e3c2",
+    borderRadius: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    height: 50,
+    marginTop: 20,
+  },
+  textbutton: {
+    fontSize: 16,
+    color: "#FFF",
+  },
+});
+export default RegistreScreen;
