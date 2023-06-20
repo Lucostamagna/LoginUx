@@ -8,6 +8,7 @@ import {
   Keyboard,
   Alert,
   StyleSheet,
+  Dimensions 
 } from "react-native";
 
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
@@ -16,6 +17,8 @@ import { Feather } from "@expo/vector-icons";
 import { StackScreenProps } from "@react-navigation/stack";
 import { AuthContext } from "../Context/AuthContext";
 import { useContext } from "react";
+
+const { width, height } = Dimensions.get("window");
 
 interface Props extends StackScreenProps<any, any> {}
 const LoginScreen = ({ navigation }: Props) => {
@@ -99,58 +102,58 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FFF",
-    padding: 20,
+    padding: width * 0.05,
   },
   image: {
-    width: 175,
-    height: 175,
+    width: width * 0.9,
+    height: height * 0.2,
     resizeMode: "contain",
     alignSelf: "center",
-    marginTop: 70,
+    marginTop: height * 0.1,
   },
   text: {
-    fontSize: 30,
+    fontSize: 28,
     color: "#323646",
     alignSelf: "center",
-    marginTop: 25,
+    marginTop: height * 0.05,
   },
   text1: {
-    fontSize: 16,
+    fontSize: 15, 
     color: "#323646",
     alignSelf: "center",
   },
   textEmail: {
     fontSize: 16,
     color: "#323646",
-    marginTop: 20,
+    marginTop: height * 0.04,
   },
   viewInfo: {
     backgroundColor: "#f6f6f6",
-    height: 50,
+    height: height * 0.06,
     borderRadius: 10,
-    paddingHorizontal: 10,
+    paddingHorizontal: width * 0.03,
   },
   textPassword: {
     fontSize: 16,
     color: "#323646",
-    marginTop: 20,
+    marginTop: height * 0.03,
   },
   viewButton: {
     backgroundColor: "#f6f6f6",
-    height: 50,
+    height: height * 0.06,
     borderRadius: 10,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 10,
+    paddingHorizontal: width * 0.03,
   },
   button: {
     backgroundColor: "#50e3c2",
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-    height: 50,
-    marginTop: 20,
+    height: height * 0.06,
+    marginTop:  height * 0.03, 
   },
   button1: {
     flexDirection: "row",

@@ -27,12 +27,12 @@ const LoadingScreen = () => {
 
         <Text
             style={{
-              fontFamily: "",
+        
               fontSize: 30,
               color: "black",
               alignSelf: "center",
               position: "absolute",
-              top: 300,
+              top: height * 0.40,
             }}
           >
             Loading
