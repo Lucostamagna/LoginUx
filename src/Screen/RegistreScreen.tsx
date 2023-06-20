@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import {
   View,
   Text,
@@ -8,27 +8,52 @@ import {
   Platform,
   Keyboard,
   StyleSheet,
+  Alert,
 } from "react-native";
 import { useState } from "react";
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 import { Feather } from "@expo/vector-icons";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useForm } from "../Hooks/useForm";
+import { AuthContext } from "../Context/AuthContext";
 
 const { width, height } = Dimensions.get("window");
 
 interface Props extends StackScreenProps<any, any> {}
 
+
+
+
 const RegistreScreen = ({ navigation }: Props) => {
+  const {singUp, errorMessage, removeError}= useContext(AuthContext)
+
+
   const { email, password, name, onChange } = useForm({
     name: "",
     email: "",
     password: "",
   });
 
+
+  useEffect(() => {
+    if (errorMessage.length === 0) return;
+    Alert.alert("Error", errorMessage, [
+      {
+        text: "Ok",
+        onPress: removeError,
+      },
+    ]);
+  }, [errorMessage]);
+
+
   const onRegister = () => {
     console.log({ email, password, name });
     Keyboard.dismiss();
+    singUp({
+      nombre:name,
+      correo:email,
+      password
+    })
   };
 
   return (
@@ -83,7 +108,7 @@ const RegistreScreen = ({ navigation }: Props) => {
           </View>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate("Loginprueba")}
+            onPress={onRegister}
           >
             <Text style={styles.textbutton}>Create Account</Text>
           </TouchableOpacity>

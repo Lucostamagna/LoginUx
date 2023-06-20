@@ -4,6 +4,12 @@ export interface LoginData{
     correo:string;
     password:string;
 }
+export interface RegistreData{
+    nombre:string
+    correo:string;
+    password:string;
+}
+
 
 export interface    LoginResponse {
     usuario: Usuario;

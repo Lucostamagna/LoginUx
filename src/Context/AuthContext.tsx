@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useReducer } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { LoginData, LoginResponse, Usuario } from "../Interfaces/AppInterface";
+import { LoginData, LoginResponse, RegistreData, Usuario } from "../Interfaces/AppInterface";
 import { authReducer, AuthState } from "./AuthReducer";
 import userDB from "../Api/UserDb";
 
@@ -10,7 +10,7 @@ type AuthContextProps = {
   user: Usuario | null;
   status: "checking" | "authenticated" | "not-authenticated";
 
-  singUp: () => void;
+  singUp: (registreData:RegistreData) => void;
   singIn: (loginData: LoginData) => void;
   singOut: () => void;
   logOut: () => void;
@@ -77,7 +77,34 @@ export const AuthProvider = ({ children }: any) => {
     }
   };
 
-  const singUp = () => {};
+  const singUp = async ({nombre, correo, password}: RegistreData) => {
+  try {
+    const { data } = await userDB.post<LoginResponse>("/usuarios", {
+      correo,
+      password,
+      nombre
+    });
+    dispatch({
+      type: "signUp",
+      payload: {
+        token: data.token,
+        user: data.usuario,
+      },
+    });
+
+    await AsyncStorage.setItem("token", data.token);
+  } catch (error) {
+    console.log({ error });
+    dispatch({
+      type: "addError",
+      payload: "Check the information",
+    });
+  }
+};
+
+
+
+
   const singOut = () => {};
   const logOut = async() => {
     await AsyncStorage.removeItem("token");
