@@ -33,7 +33,7 @@ const ProtectedScreen = () => {
 </Text> */}
       <View></View>
       <View style={styles.viewButton}>
-        <TouchableOpacity style={styles.button} onPress={logOut}>
+        <TouchableOpacity style={styles.button} onPress={logOut} activeOpacity={0.8}>
           <Text style={{ fontSize: 16, color: "#FFF" }}>Log Out</Text>
         </TouchableOpacity>
       </View>

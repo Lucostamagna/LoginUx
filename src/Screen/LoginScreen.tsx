@@ -81,7 +81,7 @@ const LoginScreen = ({ navigation }: Props) => {
             />
             <Feather name="eye" size={24} color="#323646" />
           </View>
-          <TouchableOpacity style={styles.button} onPress={onLogin}>
+          <TouchableOpacity style={styles.button} onPress={onLogin} activeOpacity={0.8}>
             <Text style={{ fontSize: 16, color: "#FFF" }}>Login</Text>
           </TouchableOpacity>
           <TouchableOpacity

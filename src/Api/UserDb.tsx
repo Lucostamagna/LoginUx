@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //endpoint sobre el cual realizo las peticiones
 //ip de mi equipo
-const baseURL= 'http://192.168.120.52:8080/api';
+const baseURL= 'http://192.168.120.53:8080/api';
 
 //peticiones http
 const userDB = axios.create({ baseURL});
