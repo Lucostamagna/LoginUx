@@ -26,8 +26,10 @@ interface Props extends StackScreenProps<any, any> {}
 
 const RegistreScreen = ({ navigation }: Props) => {
   const {singUp, errorMessage, removeError}= useContext(AuthContext)
-
-
+  const [showPassword, setShowPassword] = useState(false);
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
   const { email, password, name, onChange } = useForm({
     name: "",
     email: "",
@@ -97,6 +99,7 @@ const RegistreScreen = ({ navigation }: Props) => {
           <View style={styles.view2}>
             <TextInput
               placeholder="***********"
+              secureTextEntry={!showPassword}
               selectionColor="black"
               onChangeText={(value) => onChange(value, "password")}
               value={password}
@@ -105,6 +108,9 @@ const RegistreScreen = ({ navigation }: Props) => {
                 padding: 10,
               }}
             />
+             <TouchableOpacity onPress={toggleShowPassword} activeOpacity={0.8}>
+            <Feather name="eye" size={24} color="#323646" /> 
+        </TouchableOpacity>
           </View>
           <TouchableOpacity
             style={styles.button}
@@ -169,6 +175,9 @@ const styles = StyleSheet.create({
     height: height * 0.06,
     borderRadius: 10,
     paddingHorizontal: width * 0.03,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   button: {
     backgroundColor: "#50e3c2",

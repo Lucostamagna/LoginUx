@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -23,6 +23,12 @@ const { width, height } = Dimensions.get("window");
 interface Props extends StackScreenProps<any, any> {}
 const LoginScreen = ({ navigation }: Props) => {
   const { singIn, errorMessage, removeError } = useContext(AuthContext);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
 
   const { email, password, onChange } = useForm({
     email: "",
@@ -74,12 +80,16 @@ const LoginScreen = ({ navigation }: Props) => {
           <View style={styles.viewButton}>
             <TextInput
               style={{ color: "#323646", padding: 10, height: 90 }}
-              secureTextEntry
+              secureTextEntry={!showPassword}
               onChangeText={(value) => onChange(value, "password")}
               value={password}
+              
               placeholder="********"
             />
-            <Feather name="eye" size={24} color="#323646" />
+            <TouchableOpacity onPress={toggleShowPassword} activeOpacity={0.8}>
+            <Feather name="eye" size={24} color="#323646" /> 
+        </TouchableOpacity>
+            
           </View>
           <TouchableOpacity style={styles.button} onPress={onLogin} activeOpacity={0.8}>
             <Text style={{ fontSize: 16, color: "#FFF" }}>Login</Text>
