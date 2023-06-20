@@ -3,11 +3,7 @@ import {
     View,
     Text,
     Dimensions,
-    Image,
-    KeyboardAvoidingView,
-    Platform,
-    Keyboard,
-    Alert,
+  
   } from "react-native";
   import LottieView from "lottie-react-native";
   const { width, height } = Dimensions.get("window");
