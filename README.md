@@ -1,18 +1,19 @@
-Sistema de Inicio de Sesión
-Este es un sistema de inicio de sesión diseñado para garantizar la autenticación segura de los usuarios y mantener sus sesiones activas en la aplicación, incluso después de cerrarla. Proporciona a cada usuario un token único que se genera automáticamente y se almacena de forma segura en AsyncStorage.
+<h2>LOGIN SYSTEM ✔ </h2>
+<br/>
 
-Características
-Generación automática de tokens únicos para cada usuario.
-Almacenamiento seguro de tokens en AsyncStorage.
-Validación de tokens para garantizar su vigencia y expiración.
-Solicitud de generación de un nuevo token si el actual ha expirado.
-Permite crear nuevos usuarios para expandir la base de usuarios.
-Almacenamiento de datos respaldado por MongoDB.
-Diseño responsivo que se adapta a cualquier tamaño de dispositivo móvil.
-Animación implementada utilizando LottieFiles.
-Requisitos previos
-Asegúrate de tener los siguientes requisitos previos antes de comenzar:
+ <h4> ▶️This is a login system designed to ensure secure authentication of users and keep their sessions active in the app, even after closing the app. Provide each user with a unique token that is automatically generated and securely stored in AsyncStorage.
+</h4>
+<h3> Characteristics</h3>
+ <p>✔Automatic generation of unique tokens for each user. </p> 
+ <p>✔Secure storage of tokens in AsyncStorage. </p>
+ <p>✔Validation of tokens to guarantee their validity and expiration </p>
+ <p>✔Request to generate a new token if the current one has expired. </p>
+ <p>✔Allows you to create new users to expand the user base. </p>
+  <p>✔Data storage backed by MongoDB. </p>
+ <p>✔Responsive design that adapts to any size of mobile device. </p>
+  <p>✔Animation implemented using LottieFiles. </p>
 
-Node.js instalado en tu sistema.
-Una cuenta en MongoDB para almacenar y respaldar los datos de la aplicación. adapta a cualquier tamaño de dispositivo móvil.
-Animación: LottieFiles 💡
+
+
+
+
