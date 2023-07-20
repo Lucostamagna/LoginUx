@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   View,
   Text,
@@ -8,9 +8,28 @@ import {
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { ProductContext } from "../Context/ProductContext";
+import { StackScreenProps } from "@react-navigation/stack";
+import { ProductStackParams } from "../Navigator/ProductNavigator";
 
-const ProductsScreen = () => {
-  const { product } = useContext(ProductContext);
+interface Props extends StackScreenProps<ProductStackParams, "ProductScreen"> {}
+
+const ProductsScreen = ({ navigation }: Props) => {
+  const { product, loadProduct } = useContext(ProductContext);
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity
+          activeOpacity={0.6}
+          style={{ marginRight: 30 }}
+          onPress={() => navigation.navigate("ProductScreen", {})}
+        >
+          <Text> Add </Text>
+        </TouchableOpacity>
+      ),
+    });
+  }, []);
+
   return (
     <View style={{ flex: 1, marginHorizontal: 10 }}>
       <FlatList
@@ -19,8 +38,21 @@ const ProductsScreen = () => {
         renderItem={({ item }) => (
           <View style={{ flexDirection: "row", alignItems: "flex-start" }}>
             <Text style={styles.productName}> {item.nombre}</Text>
-
-            <Ionicons name="arrow-forward-outline" size={25} color="#76D7C4" />
+            <TouchableOpacity
+              activeOpacity={0.6}
+              onPress={() =>
+                navigation.navigate("ProductScreen", {
+                  id: item._id,
+                  name: item.nombre,
+                })
+              }
+            >
+              <Ionicons
+                name="arrow-forward-outline"
+                size={25}
+                color="#76D7C4"
+              />
+            </TouchableOpacity>
           </View>
         )}
         ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
