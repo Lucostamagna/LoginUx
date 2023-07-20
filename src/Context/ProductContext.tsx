@@ -28,8 +28,9 @@ loadProduct();
 
 //carga ´productos
   const loadProduct = async () => {
-const resp= await userDB.get<ProductsResponse>('productos?limite=50');
-setProduct([...product, ...resp.data.productos])
+const resp= await userDB.get<ProductsResponse>('/productos?limite=50');
+// setProduct([...product, ...resp.data.productos])
+setProduct([...resp.data.productos])
 console.log(resp.data.productos)
   };
 

@@ -8,7 +8,7 @@ import {
   Keyboard,
   Alert,
   StyleSheet,
-  Dimensions 
+  Dimensions,
 } from "react-native";
 
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
@@ -28,7 +28,6 @@ const LoginScreen = ({ navigation }: Props) => {
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
-
 
   const { email, password, onChange } = useForm({
     email: "",
@@ -83,15 +82,17 @@ const LoginScreen = ({ navigation }: Props) => {
               secureTextEntry={!showPassword}
               onChangeText={(value) => onChange(value, "password")}
               value={password}
-              
               placeholder="********"
             />
             <TouchableOpacity onPress={toggleShowPassword} activeOpacity={0.8}>
-            <Feather name="eye" size={24} color="#323646" /> 
-        </TouchableOpacity>
-            
+              <Feather name="eye" size={24} color="#323646" />
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.button} onPress={onLogin} activeOpacity={0.8}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={onLogin}
+            activeOpacity={0.8}
+          >
             <Text style={{ fontSize: 16, color: "#FFF" }}>Login</Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -128,7 +129,7 @@ const styles = StyleSheet.create({
     marginTop: height * 0.05,
   },
   text1: {
-    fontSize: 15, 
+    fontSize: 15,
     color: "#323646",
     alignSelf: "center",
   },
@@ -163,7 +164,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     height: height * 0.06,
-    marginTop:  height * 0.03, 
+    marginTop: height * 0.03,
   },
   button1: {
     flexDirection: "row",
