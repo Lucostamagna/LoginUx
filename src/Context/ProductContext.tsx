@@ -1,5 +1,6 @@
-import React, { createContext, useState } from "react";
-import { Producto } from "../Interfaces/AppInterface";
+import React, { createContext, useEffect, useState } from "react";
+import { Producto, ProductsResponse } from "../Interfaces/AppInterface";
+import userDB from "../Api/UserDb";
 
 type ProductContextProps = {
   product: Producto[];
@@ -20,7 +21,19 @@ export const ProductContext = createContext({} as ProductContextProps);
 export const ProductProvider = ({ children }: any) => {
   const [product, setProduct] = useState<Producto[]>([]);
 
-  const loadProduct = async () => {};
+useEffect(()=>{
+loadProduct();
+},[])
+
+
+//carga ´productos
+  const loadProduct = async () => {
+const resp= await userDB.get<ProductsResponse>('productos?limite=50');
+setProduct([...product, ...resp.data.productos])
+console.log(resp.data.productos)
+  };
+
+
   const addProduct = async (categoryId: string, productName: string) => {};
   const updateProduct = async (
     categoryId: string,
