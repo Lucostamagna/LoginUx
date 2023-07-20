@@ -17,22 +17,22 @@ type ProductContextProps = {
 
 export const ProductContext = createContext({} as ProductContextProps);
 
-const [product, setProduct] = useState<Producto[]>([]);
-
-const loadProduct = async () => {};
-const addProduct = async (categoryId: string, productName: string) => {};
-const updateProduct = async (
-  categoryId: string,
-  productName: string,
-  productId: string
-) => {};
-const deleteProduct = async (id: string) => {};
-const loadProductById = async (id: string) => {
-  throw new Error("not implemented");
-};
-const uploadImage = async (data: any, id: string) => {};
-
 export const ProductProvider = ({ children }: any) => {
+  const [product, setProduct] = useState<Producto[]>([]);
+
+  const loadProduct = async () => {};
+  const addProduct = async (categoryId: string, productName: string) => {};
+  const updateProduct = async (
+    categoryId: string,
+    productName: string,
+    productId: string
+  ) => {};
+  const deleteProduct = async (id: string) => {};
+  const loadProductById = async (id: string) => {
+    throw new Error("not implemented");
+  };
+  const uploadImage = async (data: any, id: string) => {};
+
   return (
     <ProductContext.Provider
       value={{

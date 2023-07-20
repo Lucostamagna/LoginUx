@@ -5,6 +5,7 @@ import ProtectedScreen from '../Screen/ProtectedScreen';
 import { AuthContext } from '../Context/AuthContext';
 import { useContext } from 'react';
 import LoadingScreen from '../Screen/LoadingScreen';
+import ProductNavigator from './ProductNavigator';
 
 
 const Stack = createStackNavigator();
@@ -30,7 +31,11 @@ if(status ==='checking') return <LoadingScreen/>
     </>
   ) : 
   (
+    <>
+    <Stack.Screen name="ProductNavigator" component={ProductNavigator} />
     <Stack.Screen name="ProtectedScreen" component={ProtectedScreen} />
+    </>
+    
   )
 }
 
