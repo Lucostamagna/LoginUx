@@ -1,18 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
   ScrollView,
   TextInput,
   StyleSheet,
-  Button,
+  TouchableOpacity 
 } from "react-native";
+import { Picker } from "@react-native-picker/picker";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ProductStackParams } from "../Navigator/ProductNavigator";
+
 
 interface Props extends StackScreenProps<ProductStackParams, "ProductScreen"> {}
 
 const ProductScreen = ({ navigation, route }: Props) => {
+  const [selectedLanguage, setSelectedLanguage] = useState();
   const { id, name = "" } = route.params;
 
   useEffect(() => {
@@ -28,11 +31,41 @@ const ProductScreen = ({ navigation, route }: Props) => {
         <TextInput placeholder="Product" style={styles.textInput} />
 
         <Text style={styles.label}> Categories: </Text>
-        <Button title="Guardar" onPress={() => {}} />
+
+        <Picker
+          selectedValue={selectedLanguage}
+          onValueChange={(itemValue, itemIndex) =>
+            setSelectedLanguage(itemValue)
+          }
+        >
+          <Picker.Item label="Java" value="java" />
+          <Picker.Item label="JavaScript" value="js" />
+        </Picker>
+
+        <TouchableOpacity
+          style={styles.buttonGuardar}
+          activeOpacity={0.6}
+          onPress={() => {}}
+        >
+          <Text style={styles.textGuardar}> Guardar </Text>
+        </TouchableOpacity>
+
         <View style={{ flexDirection: "row", justifyContent: "center" }}>
-          <Button title="Camera" onPress={() => {}} />
-<View style={{width:10}}/>
-          <Button title="Galery" onPress={() => {}} />
+          <TouchableOpacity
+            style={styles.buttonCamera}
+            activeOpacity={0.6}
+            onPress={() => {}}
+          >
+            <Text style={styles.textGuardar}> Camera </Text>
+          </TouchableOpacity>
+          <View style={{ width: 10 }} />
+          <TouchableOpacity
+            style={styles.buttonCamera}
+            activeOpacity={0.6}
+            onPress={() => {}}
+          >
+            <Text style={styles.textGuardar}> Galery</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>
@@ -48,16 +81,46 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   label: {
-    fontSize: 18,
+    fontSize: 17,
+    fontWeight: "bold",
   },
   textInput: {
     borderWidth: 1,
     paddingHorizontal: 10,
     paddingVertical: 5,
-    borderRadius: 20,
-    borderColor: "rgba(0,0,0,0.2)",
+    borderRadius: 10,
+    borderColor: "#50e3c2",
     height: 45,
     marginTop: 5,
     marginBottom: 15,
+  },
+  buttonGuardar: {
+    backgroundColor: "#50e3c2",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderColor: "black",
+    borderWidth: 2,
+    borderStyle: "solid",
+    borderRadius: 5,
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 7,
+  },
+  textGuardar: {
+    fontWeight: "600",
+    fontSize: 15,
+  },
+  buttonCamera: {
+    width: "100%",
+    backgroundColor: "#50e3c2",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderColor: "black",
+    borderWidth: 1,
+    borderStyle: "solid",
+    borderRadius: 5,
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 5,
   },
 });
