@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   buttonCamera: {
-    width: "100%",
+    width: "45%",
     backgroundColor: "#50e3c2",
     paddingVertical: 10,
     paddingHorizontal: 20,
