@@ -21,10 +21,10 @@ const ProductsScreen = ({ navigation }: Props) => {
       headerRight: () => (
         <TouchableOpacity
           activeOpacity={0.6}
-          style={{ marginRight: 30 }}
+          style={styles.buttonAdd}
           onPress={() => navigation.navigate("ProductScreen", {})}
         >
-          <Text> Add </Text>
+          <Text  style={styles.textAdd}> Add Product</Text>
         </TouchableOpacity>
       ),
     });
@@ -47,11 +47,11 @@ const ProductsScreen = ({ navigation }: Props) => {
                 })
               }
             >
-              <Ionicons
+              {/* <Ionicons
                 name="arrow-forward-outline"
                 size={25}
                 color="#76D7C4"
-              />
+              /> */}
             </TouchableOpacity>
           </View>
         )}
@@ -73,4 +73,23 @@ const styles = StyleSheet.create({
     marginVertical: 6,
     borderBottomColor: "rgba(0,0,0,0.1)",
   },
+  buttonAdd: {
+    marginRight:15,
+    width:85,
+    height:35,
+    backgroundColor: "#50e3c2",
+    paddingVertical: 10,
+  marginTop:15,
+    borderColor: "black",
+    borderWidth: 1,
+    borderStyle: "solid",
+    borderRadius: 5,
+    alignItems: "center",
+    justifyContent: "center",
+   
+  },
+  textAdd:{
+    fontSize:10,
+    fontWeight:'bold'
+  }
 });
