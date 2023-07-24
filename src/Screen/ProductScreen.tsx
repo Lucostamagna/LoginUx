@@ -10,6 +10,7 @@ import {
 import { Picker } from "@react-native-picker/picker";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ProductStackParams } from "../Navigator/ProductNavigator";
+import useCategories from "../Hooks/useCategories";
 
 
 interface Props extends StackScreenProps<ProductStackParams, "ProductScreen"> {}
@@ -17,6 +18,7 @@ interface Props extends StackScreenProps<ProductStackParams, "ProductScreen"> {}
 const ProductScreen = ({ navigation, route }: Props) => {
   const [selectedLanguage, setSelectedLanguage] = useState();
   const { id, name = "" } = route.params;
+  const {categories }=useCategories();
 
   useEffect(() => {
     navigation.setOptions({
@@ -38,8 +40,9 @@ const ProductScreen = ({ navigation, route }: Props) => {
             setSelectedLanguage(itemValue)
           }
         >
-          <Picker.Item label="Java" value="java" />
-          <Picker.Item label="JavaScript" value="js" />
+          {categories.map(c => (
+            <Picker.Item label={c.nombre} value={c._id} key={c._id} />
+          ))}
         </Picker>
 
         <TouchableOpacity

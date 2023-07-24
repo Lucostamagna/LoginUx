@@ -6,7 +6,9 @@ const useCategories = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [categories, setCategories] = useState<Categoria[]>([]);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    getCategories();
+  }, []);
 
   const getCategories = async () => {
     const resp = await userDB.get<CategoriesResponse>("/categorias");
