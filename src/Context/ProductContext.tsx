@@ -21,19 +21,17 @@ export const ProductContext = createContext({} as ProductContextProps);
 export const ProductProvider = ({ children }: any) => {
   const [product, setProduct] = useState<Producto[]>([]);
 
-useEffect(()=>{
-loadProduct();
-},[])
+  useEffect(() => {
+    loadProduct();
+  }, []);
 
-
-//carga ´productos
+  //carga ´productos
   const loadProduct = async () => {
-const resp= await userDB.get<ProductsResponse>('/productos?limite=50');
-// setProduct([...product, ...resp.data.productos])
-setProduct([...resp.data.productos])
-console.log(resp.data.productos)
+    const resp = await userDB.get<ProductsResponse>("/productos?limite=50");
+    // setProduct([...product, ...resp.data.productos])
+    setProduct([...resp.data.productos]);
+    console.log(resp.data.productos);
   };
-
 
   const addProduct = async (categoryId: string, productName: string) => {};
   const updateProduct = async (
@@ -42,9 +40,13 @@ console.log(resp.data.productos)
     productId: string
   ) => {};
   const deleteProduct = async (id: string) => {};
-  const loadProductById = async (id: string) => {
-    throw new Error("not implemented");
+
+  const loadProductById = async (id: string): Promise<Producto> => {
+    const resp = await userDB.get<Producto>(`productos/${id}`);
+
+    return resp.data;
   };
+
   const uploadImage = async (data: any, id: string) => {};
 
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext  } from "react";
 import {
   View,
   Text,
@@ -11,6 +11,9 @@ import { Picker } from "@react-native-picker/picker";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ProductStackParams } from "../Navigator/ProductNavigator";
 import useCategories from "../Hooks/useCategories";
+import { useForm } from "../Hooks/useForm";
+
+import { ProductContext } from "../Context/ProductContext";
 
 
 interface Props extends StackScreenProps<ProductStackParams, "ProductScreen"> {}
@@ -18,19 +21,47 @@ interface Props extends StackScreenProps<ProductStackParams, "ProductScreen"> {}
 const ProductScreen = ({ navigation, route }: Props) => {
   const [selectedLanguage, setSelectedLanguage] = useState();
   const { id, name = "" } = route.params;
+
   const {categories }=useCategories();
+
+  const {loadProductById}= useContext(ProductContext)
+
+const{ _id, categoriaId, nombre, img, form, onChange} =useForm({
+  _id:id,
+  categoriaId:'',
+  nombre:name,
+  img:''
+})
+
+
 
   useEffect(() => {
     navigation.setOptions({
       title: name ? name : "New Product",
     });
   }, []);
+useEffect(()=>{
+  loadProduct()
+},[])
+
+const loadProduct= async()=>{
+  
+  if(id?.length === 0) return
+  const product= await loadProductById(id);
+console.log('llllllllll', product)
+}
+
+
 
   return (
     <View style={styles.container}>
       <ScrollView>
         <Text style={styles.label}> Product's name: </Text>
-        <TextInput placeholder="Product" style={styles.textInput} />
+        <TextInput placeholder="Product" 
+        style={styles.textInput} 
+        value={nombre}
+        onChangeText={(value)=> onChange(value, 'nombre')}
+        />
 
         <Text style={styles.label}> Categories: </Text>
 
@@ -70,6 +101,8 @@ const ProductScreen = ({ navigation, route }: Props) => {
             <Text style={styles.textGuardar}> Galery</Text>
           </TouchableOpacity>
         </View>
+
+        <Text> {JSON.stringify(form,null, 5)}</Text>
       </ScrollView>
     </View>
   );

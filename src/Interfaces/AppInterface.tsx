@@ -40,6 +40,7 @@ export interface Producto {
     nombre:    string;
     categoria: Categoria;
     usuario:   Categoria;
+    img?:string
 }
 
 // export interface Categoria {

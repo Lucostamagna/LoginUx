@@ -47,11 +47,11 @@ const ProductsScreen = ({ navigation }: Props) => {
                 })
               }
             >
-              {/* <Ionicons
+              <Ionicons
                 name="arrow-forward-outline"
                 size={25}
                 color="#76D7C4"
-              /> */}
+              />
             </TouchableOpacity>
           </View>
         )}
