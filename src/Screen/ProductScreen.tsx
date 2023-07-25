@@ -1,20 +1,19 @@
-import React, { useEffect, useState,useContext  } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   View,
   Text,
+  Image,
   ScrollView,
   TextInput,
   StyleSheet,
-  TouchableOpacity 
+  TouchableOpacity,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ProductStackParams } from "../Navigator/ProductNavigator";
 import useCategories from "../Hooks/useCategories";
 import { useForm } from "../Hooks/useForm";
-
 import { ProductContext } from "../Context/ProductContext";
-
 
 interface Props extends StackScreenProps<ProductStackParams, "ProductScreen"> {}
 
@@ -22,56 +21,57 @@ const ProductScreen = ({ navigation, route }: Props) => {
   const [selectedLanguage, setSelectedLanguage] = useState();
   const { id, name = "" } = route.params;
 
-  const {categories }=useCategories();
+  const { categories } = useCategories();
 
-  const {loadProductById}= useContext(ProductContext)
+  const { loadProductById } = useContext(ProductContext);
 
-const{ _id, categoriaId, nombre, img, form, onChange} =useForm({
-  _id:id,
-  categoriaId:'',
-  nombre:name,
-  img:''
-})
-
-
+  const { _id, categoriaId, nombre, img, form, onChange, setFormValue } =
+    useForm({
+      _id: id,
+      categoriaId: "",
+      nombre: name,
+      img: "",
+    });
 
   useEffect(() => {
     navigation.setOptions({
       title: name ? name : "New Product",
     });
   }, []);
-useEffect(()=>{
-  loadProduct()
-},[])
 
-const loadProduct= async()=>{
-  
-  if(id?.length === 0) return
-  const product= await loadProductById(id);
-console.log('llllllllll', product)
-}
+  useEffect(() => {
+    loadProduct();
+  }, []);
 
-
+  const loadProduct = async () => {
+    if (id.length === 0) return;
+    const product = await loadProductById(id);
+    setFormValue({
+      _id: id,
+      categoriaId: product.categoria._id,
+      img: product.img || "",
+      nombre,
+    });
+  };
 
   return (
     <View style={styles.container}>
       <ScrollView>
         <Text style={styles.label}> Product's name: </Text>
-        <TextInput placeholder="Product" 
-        style={styles.textInput} 
-        value={nombre}
-        onChangeText={(value)=> onChange(value, 'nombre')}
+        <TextInput
+          placeholder="Product"
+          style={styles.textInput}
+          value={nombre}
+          onChangeText={(value) => onChange(value, "nombre")}
         />
 
         <Text style={styles.label}> Categories: </Text>
 
         <Picker
-          selectedValue={selectedLanguage}
-          onValueChange={(itemValue, itemIndex) =>
-            setSelectedLanguage(itemValue)
-          }
+          selectedValue={categoriaId}
+          onValueChange={(value) => onChange(value, 'categoriaId')}
         >
-          {categories.map(c => (
+          {categories.map((c) => (
             <Picker.Item label={c.nombre} value={c._id} key={c._id} />
           ))}
         </Picker>
@@ -102,7 +102,15 @@ console.log('llllllllll', product)
           </TouchableOpacity>
         </View>
 
-        <Text> {JSON.stringify(form,null, 5)}</Text>
+        {
+          
+            (img.length===0) && (
+          <Image source={{ uri:img}}
+          style={{width:'100', height:300
+        }}
+        />
+          )
+        }
       </ScrollView>
     </View>
   );
