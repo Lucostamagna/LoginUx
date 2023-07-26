@@ -23,7 +23,7 @@ const ProductScreen = ({ navigation, route }: Props) => {
 
   const { categories } = useCategories();
 
-  const { loadProductById } = useContext(ProductContext);
+  const { loadProductById, addProduct, updateProduct } = useContext(ProductContext);
 
   const { _id, categoriaId, nombre, img, form, onChange, setFormValue } =
     useForm({
@@ -35,9 +35,9 @@ const ProductScreen = ({ navigation, route }: Props) => {
 
   useEffect(() => {
     navigation.setOptions({
-      title: name ? name : "New Product",
+      title:(nombre) ? nombre: "Name's  Product",
     });
-  }, []);
+  }, [ nombre]);
 
   useEffect(() => {
     loadProduct();
@@ -57,9 +57,10 @@ const ProductScreen = ({ navigation, route }: Props) => {
 
   const saveOrUpDate = () => {
     if (id.length > 0) {
-      console.log("ACTUALIZAR");
+      updateProduct(categoriaId,nombre,id)
     } else {
-      console.log("CREAR");
+      const tempCategoriaId = categoriaId || categories[0]._id
+      addProduct(tempCategoriaId, nombre)
     }
   };
 
