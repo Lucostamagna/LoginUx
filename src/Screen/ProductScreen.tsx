@@ -19,7 +19,7 @@ interface Props extends StackScreenProps<ProductStackParams, "ProductScreen"> {}
 
 const ProductScreen = ({ navigation, route }: Props) => {
   const [selectedLanguage, setSelectedLanguage] = useState();
-  const { id, name = "" } = route.params;
+  const { id ='', name = ''} = route.params;
 
   const { categories } = useCategories();
 
@@ -46,6 +46,7 @@ const ProductScreen = ({ navigation, route }: Props) => {
   const loadProduct = async () => {
     if (id.length === 0) return;
     const product = await loadProductById(id);
+    console.log('llllllllllll', product)
     setFormValue({
       _id: id,
       categoriaId: product.categoria._id,
@@ -104,7 +105,7 @@ const ProductScreen = ({ navigation, route }: Props) => {
 
         {
           
-            (img.length===0) && (
+            (img.length > 0) && (
           <Image source={{ uri:img}}
           style={{width:'100', height:300
         }}

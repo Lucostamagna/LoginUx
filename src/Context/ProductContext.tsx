@@ -34,15 +34,18 @@ export const ProductProvider = ({ children }: any) => {
   };
 
   const addProduct = async (categoryId: string, productName: string) => {};
+  
   const updateProduct = async (
     categoryId: string,
     productName: string,
     productId: string
   ) => {};
+
+
   const deleteProduct = async (id: string) => {};
 
-  const loadProductById = async (id: string): Promise<Producto> => {
-    const resp = await userDB.get<Producto>(`productos/${id}`);
+  const loadProductById = async (id: string):Promise<Producto> => {
+    const resp = await userDB.get<Producto>(`/productos/${id}`);
 
     return resp.data;
   };
