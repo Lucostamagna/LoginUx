@@ -19,7 +19,7 @@ interface Props extends StackScreenProps<ProductStackParams, "ProductScreen"> {}
 
 const ProductScreen = ({ navigation, route }: Props) => {
   const [selectedLanguage, setSelectedLanguage] = useState();
-  const { id ='', name = ''} = route.params;
+  const { id = "", name = "" } = route.params;
 
   const { categories } = useCategories();
 
@@ -46,13 +46,21 @@ const ProductScreen = ({ navigation, route }: Props) => {
   const loadProduct = async () => {
     if (id.length === 0) return;
     const product = await loadProductById(id);
-    console.log('llllllllllll', product)
+    console.log("llllllllllll", product);
     setFormValue({
       _id: id,
       categoriaId: product.categoria._id,
       img: product.img || "",
       nombre,
     });
+  };
+
+  const saveOrUpDate = () => {
+    if (id.length > 0) {
+      console.log("ACTUALIZAR");
+    } else {
+      console.log("CREAR");
+    }
   };
 
   return (
@@ -70,7 +78,7 @@ const ProductScreen = ({ navigation, route }: Props) => {
 
         <Picker
           selectedValue={categoriaId}
-          onValueChange={(value) => onChange(value, 'categoriaId')}
+          onValueChange={(value) => onChange(value, "categoriaId")}
         >
           {categories.map((c) => (
             <Picker.Item label={c.nombre} value={c._id} key={c._id} />
@@ -80,38 +88,35 @@ const ProductScreen = ({ navigation, route }: Props) => {
         <TouchableOpacity
           style={styles.buttonGuardar}
           activeOpacity={0.6}
-          onPress={() => {}}
+          onPress={saveOrUpDate}
         >
           <Text style={styles.textGuardar}> Guardar </Text>
         </TouchableOpacity>
-
-        <View style={{ flexDirection: "row", justifyContent: "center" }}>
-          <TouchableOpacity
-            style={styles.buttonCamera}
-            activeOpacity={0.6}
-            onPress={() => {}}
-          >
-            <Text style={styles.textGuardar}> Camera </Text>
-          </TouchableOpacity>
-          <View style={{ width: 10 }} />
-          <TouchableOpacity
-            style={styles.buttonCamera}
-            activeOpacity={0.6}
-            onPress={() => {}}
-          >
-            <Text style={styles.textGuardar}> Galery</Text>
-          </TouchableOpacity>
-        </View>
-
         {
-          
-            (img.length > 0) && (
-          <Image source={{ uri:img}}
-          style={{width:'100', height:300
-        }}
-        />
-          )
-        }
+        
+        (id.length > 0) && (
+          <View style={{ flexDirection: "row", justifyContent: "center" }}>
+            <TouchableOpacity
+              style={styles.buttonCamera}
+              activeOpacity={0.6}
+              onPress={() => {}}
+            >
+              <Text style={styles.textGuardar}> Camera </Text>
+            </TouchableOpacity>
+            <View style={{ width: 10 }} />
+            <TouchableOpacity
+              style={styles.buttonCamera}
+              activeOpacity={0.6}
+              onPress={() => {}}
+            >
+              <Text style={styles.textGuardar}> Galery</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+
+        {img.length > 0 && (
+          <Image source={{ uri: img }} style={{ width: "100", height: 300 }} />
+        )}
       </ScrollView>
     </View>
   );
