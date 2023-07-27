@@ -5,7 +5,7 @@ import userDB from "../Api/UserDb";
 type ProductContextProps = {
   product: Producto[];
   loadProduct: () => Promise<void>;
-  addProduct: (categoryId: string, productName: string) => Promise<void>;
+  addProduct: (categoryId: string, productName: string) => Promise<Producto>;
   updateProduct: (
     categoryId: string,
     productName: string,
@@ -33,26 +33,37 @@ export const ProductProvider = ({ children }: any) => {
     console.log(resp.data.productos);
   };
 
-  const addProduct = async (categoryId: string, productName: string) => {
-  console.log('addProduct')
-  console.log({categoryId, productName})
-
+  const addProduct = async (
+    categoryId: string,
+    productName: string
+  ): Promise<Producto> => {
+    const resp = await userDB.post<Producto>("/productos", {
+      nombre: productName,
+      categoria: categoryId,
+    });
+    setProduct([...product, resp.data]);
+    return resp.data;
   };
-  
+
   const updateProduct = async (
     categoryId: string,
     productName: string,
     productId: string
   ) => {
-
-    console.log('updateProduct')
-    console.log({categoryId, productName,productId})
+    const resp = await userDB.put<Producto>(`/productos/${productId}`, {
+      nombre: productName,
+      categoria: categoryId,
+    });
+    setProduct(
+      product.map((prod) => {
+        return prod._id === productId ? resp.data : prod;
+      })
+    );
   };
-
 
   const deleteProduct = async (id: string) => {};
 
-  const loadProductById = async (id: string):Promise<Producto> => {
+  const loadProductById = async (id: string): Promise<Producto> => {
     const resp = await userDB.get<Producto>(`/productos/${id}`);
 
     return resp.data;
