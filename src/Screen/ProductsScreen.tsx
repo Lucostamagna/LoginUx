@@ -1,20 +1,23 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   View,
   Text,
   FlatList,
   StyleSheet,
   TouchableOpacity,
+  RefreshControl
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { ProductContext } from "../Context/ProductContext";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ProductStackParams } from "../Navigator/ProductNavigator";
 
+
 interface Props extends StackScreenProps<ProductStackParams, "ProductScreen"> {}
 
 const ProductsScreen = ({ navigation }: Props) => {
   const { product, loadProduct } = useContext(ProductContext);
+  const [isRefreshing, setIsRefreshing]= useState(false)
 
   useEffect(() => {
     navigation.setOptions({
@@ -29,6 +32,14 @@ const ProductsScreen = ({ navigation }: Props) => {
       ),
     });
   }, []);
+
+
+
+const loadProductFromBackend= async()=>{
+  setIsRefreshing(true)
+  await loadProduct();
+  setIsRefreshing(false)
+}
 
   return (
     <View style={{ flex: 1, marginHorizontal: 10 }}>
@@ -56,6 +67,13 @@ const ProductsScreen = ({ navigation }: Props) => {
           </View>
         )}
         ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
+      
+      refreshControl={
+        <RefreshControl
+        refreshing={isRefreshing}
+        onRefresh={loadProductFromBackend}
+        />
+      }
       />
     </View>
   );
