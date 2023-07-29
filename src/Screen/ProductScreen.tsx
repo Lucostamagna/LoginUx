@@ -117,7 +117,7 @@ const ProductScreen = ({ navigation, route }: Props) => {
         )}
 
         {img.length > 0 && (
-          <Image source={{ uri: img }} style={{ width: "100", height: 300 }} />
+          <Image source={{ uri: img }} style={{ width:100, height: 300 }} />
         )}
       </ScrollView>
     </View>
