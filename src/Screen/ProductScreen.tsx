@@ -9,18 +9,20 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
+import * as ImagePicker from 'expo-image-picker';
 import { StackScreenProps } from "@react-navigation/stack";
 import { ProductStackParams } from "../Navigator/ProductNavigator";
 import useCategories from "../Hooks/useCategories";
 import { useForm } from "../Hooks/useForm";
 import { ProductContext } from "../Context/ProductContext";
+import { launchCamera } from 'react-native-image-picker';
 
 interface Props extends StackScreenProps<ProductStackParams, "ProductScreen"> {}
 
 const ProductScreen = ({ navigation, route }: Props) => {
   const [selectedLanguage, setSelectedLanguage] = useState();
   const { id = "", name = "" } = route.params;
-
+  const [tempUri, setTempUri] = useState<string>();
   const { categories } = useCategories();
 
   const { loadProductById, addProduct, updateProduct } = useContext(ProductContext);
@@ -64,6 +66,18 @@ const ProductScreen = ({ navigation, route }: Props) => {
     onChange(newProduct._id, '_id')
       }
   };
+  const pickImage = async () => {
+    launchCamera({
+      mediaType:'photo',
+      quality:0.5
+    },(resp)=>{
+if(resp.didCancel) return;
+
+
+
+    })
+  };
+
 
   return (
     <View style={styles.container}>
@@ -101,8 +115,9 @@ const ProductScreen = ({ navigation, route }: Props) => {
             <TouchableOpacity
               style={styles.buttonCamera}
               activeOpacity={0.6}
-              onPress={() => {}}
+              onPress={pickImage}
             >
+               
               <Text style={styles.textGuardar}> Camera </Text>
             </TouchableOpacity>
             <View style={{ width: 10 }} />
