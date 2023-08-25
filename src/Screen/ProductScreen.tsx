@@ -132,7 +132,7 @@ if(resp.didCancel) return;
         )}
 
         {img.length > 0 && (
-          <Image source={{ uri: img }} style={{ width:100, height: 300 }} />
+          <Image source={{ uri: img }} style={{ width:350, height: 300, marginTop:20, borderRadius:40, marginHorizontal:20}} />
         )}
       </ScrollView>
     </View>
